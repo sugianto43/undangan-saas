@@ -1,6 +1,6 @@
 "use client"
 
-import { useActionState, useState } from "react"
+import { startTransition, useActionState, useState } from "react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { authCredentialsSchema, type AuthCredentialsInput } from "@/lib/validations/auth"
@@ -32,7 +32,9 @@ export function LoginForm() {
     const formData = new FormData()
     formData.append("email", data.email)
     formData.append("password", data.password)
-    formAction(formData)
+    startTransition(() => {
+      formAction(formData)
+    })
   })
 
   return (
