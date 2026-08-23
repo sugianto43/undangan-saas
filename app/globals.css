@@ -49,80 +49,93 @@
 }
 
 /*
- * "Modern Teal" — the app's own brand palette (dashboard, login, landing),
- * modeled on wevitation.com's visual direction per explicit reference:
- * clean near-white background, teal/turquoise accent, bold modern sans
- * headline (Sora), generous whitespace — tech-forward and premium rather
- * than romantic or playful.
+ * Glassmorphic surface per DESIGN.md: 16px backdrop-blur, translucent white
+ * fill, faint border, soft tinted ambient shadow. Applied selectively to
+ * app-shell cards/panels (dashboard, landing) — not baked into the shared
+ * Card primitive, which also renders inside the guest-facing invitation
+ * themes that have their own independent token system.
+ */
+.glass-panel {
+  background-color: color-mix(in oklch, var(--color-card) 75%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in oklch, var(--color-foreground) 8%, transparent);
+  box-shadow: 0 20px 40px -20px color-mix(in oklch, var(--color-secondary-foreground, var(--color-foreground)) 15%, transparent);
+}
+
+/*
+ * "The Modern Host" — the app's own brand palette (dashboard, login,
+ * landing), from design/invito/DESIGN.md. Champagne warmth + Deep Charcoal
+ * typography + Rose Copper "celebration" accent, minimalism + glassmorphism.
  * Distinct from the per-invitation guest-facing themes in components/themes/.
  */
 :root {
-  --background: oklch(0.995 0.002 220);
-  --foreground: oklch(0.18 0.01 240);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.01 240);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.18 0.01 240);
-  --primary: oklch(0.62 0.11 195);
-  --primary-foreground: oklch(0.99 0 0);
-  --secondary: oklch(0.96 0.015 195);
-  --secondary-foreground: oklch(0.28 0.04 195);
-  --muted: oklch(0.96 0.004 240);
-  --muted-foreground: oklch(0.5 0.01 240);
-  --accent: oklch(0.78 0.14 75);
-  --accent-foreground: oklch(0.28 0.05 60);
-  --destructive: oklch(0.58 0.22 25);
-  --border: oklch(0.9 0.006 240);
-  --input: oklch(0.9 0.006 240);
-  --ring: oklch(0.62 0.11 195);
-  --chart-1: oklch(0.62 0.11 195);
-  --chart-2: oklch(0.78 0.14 75);
-  --chart-3: oklch(0.5 0.1 220);
-  --chart-4: oklch(0.65 0.15 300);
-  --chart-5: oklch(0.5 0.01 240);
-  --radius: 0.85rem;
-  --sidebar: oklch(0.97 0.004 220);
-  --sidebar-foreground: oklch(0.18 0.01 240);
-  --sidebar-primary: oklch(0.62 0.11 195);
-  --sidebar-primary-foreground: oklch(0.99 0 0);
-  --sidebar-accent: oklch(0.78 0.14 75);
-  --sidebar-accent-foreground: oklch(0.28 0.05 60);
-  --sidebar-border: oklch(0.9 0.006 240);
-  --sidebar-ring: oklch(0.62 0.11 195);
+  --background: #f9f9f9;
+  --foreground: #1a1c1c;
+  --card: #ffffff;
+  --card-foreground: #1a1c1c;
+  --popover: #ffffff;
+  --popover-foreground: #1a1c1c;
+  --primary: #b76e79;
+  --primary-foreground: #ffffff;
+  --secondary: #f7e7ce;
+  --secondary-foreground: #4b463d;
+  --muted: #f3f3f4;
+  --muted-foreground: #4b463d;
+  --accent: #ffe2e4;
+  --accent-foreground: #8c4b55;
+  --destructive: #ba1a1a;
+  --border: #cec5ba;
+  --input: #cec5ba;
+  --ring: #b76e79;
+  --chart-1: #b76e79;
+  --chart-2: #8c4b55;
+  --chart-3: #685d4a;
+  --chart-4: #5d5f5e;
+  --chart-5: #4b463d;
+  --radius: 0.6rem;
+  --sidebar: #f3f3f4;
+  --sidebar-foreground: #1a1c1c;
+  --sidebar-primary: #b76e79;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffe2e4;
+  --sidebar-accent-foreground: #8c4b55;
+  --sidebar-border: #cec5ba;
+  --sidebar-ring: #b76e79;
 }
 
 .dark {
-  --background: oklch(0.17 0.012 240);
-  --foreground: oklch(0.96 0.004 220);
-  --card: oklch(0.22 0.014 240);
-  --card-foreground: oklch(0.96 0.004 220);
-  --popover: oklch(0.22 0.014 240);
-  --popover-foreground: oklch(0.96 0.004 220);
-  --primary: oklch(0.7 0.12 195);
-  --primary-foreground: oklch(0.17 0.012 240);
-  --secondary: oklch(0.27 0.02 200);
-  --secondary-foreground: oklch(0.96 0.004 220);
-  --muted: oklch(0.27 0.014 240);
-  --muted-foreground: oklch(0.72 0.008 230);
-  --accent: oklch(0.8 0.13 75);
-  --accent-foreground: oklch(0.17 0.012 240);
-  --destructive: oklch(0.68 0.2 25);
+  --background: #1a1c1c;
+  --foreground: #f0f1f1;
+  --card: #2f3131;
+  --card-foreground: #f0f1f1;
+  --popover: #2f3131;
+  --popover-foreground: #f0f1f1;
+  --primary: #d3a3ab;
+  --primary-foreground: #1a1c1c;
+  --secondary: #454747;
+  --secondary-foreground: #f0f1f1;
+  --muted: #2f3131;
+  --muted-foreground: #cec5ba;
+  --accent: #70343e;
+  --accent-foreground: #ffd9dd;
+  --destructive: #ffb4ab;
   --border: oklch(1 0 0 / 10%);
   --input: oklch(1 0 0 / 13%);
-  --ring: oklch(0.7 0.12 195);
-  --chart-1: oklch(0.7 0.12 195);
-  --chart-2: oklch(0.8 0.13 75);
-  --chart-3: oklch(0.6 0.1 220);
-  --chart-4: oklch(0.7 0.14 300);
-  --chart-5: oklch(0.72 0.008 230);
-  --sidebar: oklch(0.2 0.013 240);
-  --sidebar-foreground: oklch(0.96 0.004 220);
-  --sidebar-primary: oklch(0.7 0.12 195);
-  --sidebar-primary-foreground: oklch(0.17 0.012 240);
-  --sidebar-accent: oklch(0.8 0.13 75);
-  --sidebar-accent-foreground: oklch(0.17 0.012 240);
+  --ring: #d3a3ab;
+  --chart-1: #d3a3ab;
+  --chart-2: #ffb2bc;
+  --chart-3: #d3c5ad;
+  --chart-4: #c6c6c6;
+  --chart-5: #cec5ba;
+  --sidebar: #221f1a;
+  --sidebar-foreground: #f0f1f1;
+  --sidebar-primary: #d3a3ab;
+  --sidebar-primary-foreground: #1a1c1c;
+  --sidebar-accent: #70343e;
+  --sidebar-accent-foreground: #ffd9dd;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.7 0.12 195);
+  --sidebar-ring: #d3a3ab;
 }
 
 /*
