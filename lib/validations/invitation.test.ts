@@ -9,7 +9,7 @@ const validInput = {
   location_text: "Jakarta",
   location_link: "https://maps.google.com/xyz",
   description: "Kami mengundang Anda ke acara pernikahan kami",
-  theme_id: "classic" as const,
+  theme_id: "royal_classic" as const,
 }
 
 describe("invitationSchema", () => {

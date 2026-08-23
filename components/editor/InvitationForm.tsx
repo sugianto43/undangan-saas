@@ -58,7 +58,7 @@ export function InvitationForm({
       location_text: defaultValues?.location_text ?? "",
       location_link: defaultValues?.location_link ?? "",
       description: defaultValues?.description ?? "",
-      theme_id: defaultValues?.theme_id ?? "classic",
+      theme_id: defaultValues?.theme_id ?? "royal_classic",
     },
   })
 
