@@ -15,3 +15,13 @@ export interface Invitation extends InvitationInput {
 export interface InvitationWithRsvpCount extends Invitation {
   rsvp_count: number
 }
+
+export type PublicInvitation = Pick<
+  Invitation,
+  | "title"
+  | "event_type"
+  | "event_date"
+  | "location_text"
+  | "location_link"
+  | "description"
+>
