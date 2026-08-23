@@ -47,12 +47,19 @@ export async function getSignedPhotoUrls(
   paths: string[],
   expiresIn = 3600
 ) {
-  if (paths.length === 0) return []
+  if (paths.length === 0) return new Map<string, string>()
 
   const { data, error } = await supabase.storage
     .from(PHOTO_BUCKET)
     .createSignedUrls(paths, expiresIn)
 
   if (error) throw error
-  return data.map((entry) => entry.signedUrl)
+
+  return new Map(
+    data
+      .filter((entry): entry is typeof entry & { signedUrl: string } =>
+        Boolean(entry.signedUrl)
+      )
+      .map((entry) => [entry.path ?? "", entry.signedUrl])
+  )
 }

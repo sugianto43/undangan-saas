@@ -17,10 +17,14 @@ export function useInvitationPhotos(invitationId: string) {
         photos.map((photo) => photo.url)
       )
 
-      return photos.map((photo, index) => ({
-        ...photo,
-        signedUrl: signedUrls[index],
-      }))
+      return photos
+        .map((photo) => ({
+          ...photo,
+          signedUrl: signedUrls.get(photo.url),
+        }))
+        .filter((photo): photo is typeof photo & { signedUrl: string } =>
+          Boolean(photo.signedUrl)
+        )
     },
     enabled: Boolean(invitationId),
   })
