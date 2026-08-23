@@ -24,11 +24,11 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 1 — Auth
 
-- [ ] Halaman `/login`: email+password sign up/login, tombol Google OAuth (Supabase Auth)
-- [ ] Middleware/protected route untuk `/dashboard/*`
-- [ ] Session handling (server component baca session, redirect kalau belum login)
-- [ ] Logout action
-- [ ] Unit test: validasi form login (Zod schema)
+- [x] Halaman `/login`: email+password sign up/login, tombol Google OAuth (Supabase Auth)
+- [x] Middleware/protected route untuk `/dashboard/*`
+- [x] Session handling (server component baca session, redirect kalau belum login)
+- [x] Logout action
+- [x] Unit test: validasi form login (Zod schema)
 
 ## Phase 2 — CRUD Undangan (Dashboard, tanpa tema/foto dulu)
 
