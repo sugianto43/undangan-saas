@@ -25,4 +25,5 @@ export type PublicInvitation = Pick<
   | "location_link"
   | "description"
   | "cover_image_url"
+  | "theme_id"
 >

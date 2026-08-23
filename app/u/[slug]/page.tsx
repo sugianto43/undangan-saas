@@ -10,6 +10,8 @@ import { GalleryLightbox } from "@/components/public-invitation/GalleryLightbox"
 import { RsvpForm } from "@/components/public-invitation/RsvpForm"
 import { WishForm } from "@/components/public-invitation/WishForm"
 import { WishesList } from "@/components/public-invitation/WishesList"
+import { ThemeWrapper } from "@/components/themes/ThemeWrapper"
+import { resolveThemeId } from "@/components/themes/themes"
 
 export default async function PublicInvitationPage(
   props: PageProps<"/u/[slug]">
@@ -46,42 +48,44 @@ export default async function PublicInvitationPage(
     )
 
   return (
-    <main>
-      <CoverSection
-        invitation={invitation}
-        guestName={guestName}
-        coverUrl={coverUrl}
-      />
-      <EventInfoSection invitation={invitation} />
-      {invitation.description ? (
-        <DescriptionSection description={invitation.description} />
-      ) : null}
+    <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
+      <main>
+        <CoverSection
+          invitation={invitation}
+          guestName={guestName}
+          coverUrl={coverUrl}
+        />
+        <EventInfoSection invitation={invitation} />
+        {invitation.description ? (
+          <DescriptionSection description={invitation.description} />
+        ) : null}
 
-      {galleryPhotos.length > 0 ? (
-        <section className="mx-auto max-w-2xl px-6 py-10">
+        {galleryPhotos.length > 0 ? (
+          <section className="mx-auto max-w-2xl px-6 py-10">
+            <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
+              Galeri
+            </p>
+            <GalleryLightbox photos={galleryPhotos} />
+          </section>
+        ) : null}
+
+        <section className="mx-auto max-w-md px-6 py-10">
           <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-            Galeri
+            RSVP
           </p>
-          <GalleryLightbox photos={galleryPhotos} />
+          <RsvpForm invitationId={invitation.id} />
         </section>
-      ) : null}
 
-      <section className="mx-auto max-w-md px-6 py-10">
-        <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-          RSVP
-        </p>
-        <RsvpForm invitationId={invitation.id} />
-      </section>
-
-      <section className="mx-auto max-w-md px-6 py-10">
-        <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-          Ucapan & Doa
-        </p>
-        <WishForm invitationId={invitation.id} />
-        <div className="mt-6">
-          <WishesList invitationId={invitation.id} />
-        </div>
-      </section>
-    </main>
+        <section className="mx-auto max-w-md px-6 py-10">
+          <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
+            Ucapan & Doa
+          </p>
+          <WishForm invitationId={invitation.id} />
+          <div className="mt-6">
+            <WishesList invitationId={invitation.id} />
+          </div>
+        </section>
+      </main>
+    </ThemeWrapper>
   )
 }
