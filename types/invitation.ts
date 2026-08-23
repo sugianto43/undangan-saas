@@ -18,6 +18,7 @@ export interface InvitationWithRsvpCount extends Invitation {
 
 export type PublicInvitation = Pick<
   Invitation,
+  | "id"
   | "title"
   | "event_type"
   | "event_date"

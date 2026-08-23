@@ -4,6 +4,9 @@ import { getPublishedInvitationBySlug } from "@/lib/supabase/queries/public-invi
 import { CoverSection } from "@/components/public-invitation/CoverSection"
 import { EventInfoSection } from "@/components/public-invitation/EventInfoSection"
 import { DescriptionSection } from "@/components/public-invitation/DescriptionSection"
+import { RsvpForm } from "@/components/public-invitation/RsvpForm"
+import { WishForm } from "@/components/public-invitation/WishForm"
+import { WishesList } from "@/components/public-invitation/WishesList"
 
 export default async function PublicInvitationPage(
   props: PageProps<"/u/[slug]">
@@ -29,6 +32,23 @@ export default async function PublicInvitationPage(
       {invitation.description ? (
         <DescriptionSection description={invitation.description} />
       ) : null}
+
+      <section className="mx-auto max-w-md px-6 py-10">
+        <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
+          RSVP
+        </p>
+        <RsvpForm invitationId={invitation.id} />
+      </section>
+
+      <section className="mx-auto max-w-md px-6 py-10">
+        <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
+          Ucapan & Doa
+        </p>
+        <WishForm invitationId={invitation.id} />
+        <div className="mt-6">
+          <WishesList invitationId={invitation.id} />
+        </div>
+      </section>
     </main>
   )
 }
