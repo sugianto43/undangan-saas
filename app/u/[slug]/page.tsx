@@ -4,10 +4,12 @@ import { getPublishedInvitationBySlug } from "@/lib/supabase/queries/public-invi
 import { listInvitationPhotos } from "@/lib/supabase/queries/invitation-photos"
 import { getSignedPhotoUrl, getSignedPhotoUrls } from "@/lib/supabase/storage"
 import { CoverSection } from "@/components/public-invitation/CoverSection"
+import { CountdownTimer } from "@/components/public-invitation/CountdownTimer"
 import { EventInfoSection } from "@/components/public-invitation/EventInfoSection"
 import { DescriptionSection } from "@/components/public-invitation/DescriptionSection"
 import { GalleryLightbox } from "@/components/public-invitation/GalleryLightbox"
 import { RsvpForm } from "@/components/public-invitation/RsvpForm"
+import { SectionLabel } from "@/components/public-invitation/SectionLabel"
 import { WishForm } from "@/components/public-invitation/WishForm"
 import { WishesList } from "@/components/public-invitation/WishesList"
 import { ThemeWrapper } from "@/components/themes/ThemeWrapper"
@@ -55,6 +57,11 @@ export default async function PublicInvitationPage(
           guestName={guestName}
           coverUrl={coverUrl}
         />
+
+        <section className="mx-auto max-w-md px-6 pt-8">
+          <CountdownTimer eventDate={invitation.event_date} />
+        </section>
+
         <EventInfoSection invitation={invitation} />
         {invitation.description ? (
           <DescriptionSection description={invitation.description} />
@@ -62,24 +69,18 @@ export default async function PublicInvitationPage(
 
         {galleryPhotos.length > 0 ? (
           <section className="mx-auto max-w-2xl px-6 py-10">
-            <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-              Galeri
-            </p>
+            <SectionLabel>Galeri</SectionLabel>
             <GalleryLightbox photos={galleryPhotos} />
           </section>
         ) : null}
 
         <section className="mx-auto max-w-md px-6 py-10">
-          <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-            RSVP
-          </p>
+          <SectionLabel>RSVP</SectionLabel>
           <RsvpForm invitationId={invitation.id} />
         </section>
 
         <section className="mx-auto max-w-md px-6 py-10">
-          <p className="mb-4 text-center text-xs tracking-widest text-muted-foreground uppercase">
-            Ucapan & Doa
-          </p>
+          <SectionLabel>Ucapan &amp; Doa</SectionLabel>
           <WishForm invitationId={invitation.id} />
           <div className="mt-6">
             <WishesList invitationId={invitation.id} />
