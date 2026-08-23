@@ -1,4 +1,4 @@
-import { redirect } from "next/navigation"
+import { notFound, redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { ResponsesSummary } from "@/components/dashboard/ResponsesSummary"
 import { WishesList } from "@/components/public-invitation/WishesList"
@@ -14,6 +14,20 @@ export default async function InvitationResponsesPage(
 
   if (!user) {
     redirect("/login")
+  }
+
+  // wishes RLS intentionally allows public read for published invitations
+  // (needed for the /u/[slug] page), so ownership must be checked here
+  // explicitly rather than relying on RLS alone for this owner-only page.
+  const { data: invitation } = await supabase
+    .from("invitations")
+    .select("id")
+    .eq("id", id)
+    .eq("user_id", user.id)
+    .maybeSingle()
+
+  if (!invitation) {
+    notFound()
   }
 
   return (
