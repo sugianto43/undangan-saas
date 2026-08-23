@@ -10,7 +10,7 @@ import {
   invitationSchema,
   type InvitationInput,
 } from "@/lib/validations/invitation"
-import { themeIds, themes } from "@/components/themes/themes"
+import { ThemePicker } from "@/components/editor/ThemePicker"
 import { slugify } from "@/lib/slug"
 import { Button } from "@/components/ui/button"
 import {
@@ -100,44 +100,9 @@ export function InvitationForm({
           render={({ field }) => (
             <FormItem>
               <FormLabel>Tema</FormLabel>
-              <Select value={field.value} onValueChange={field.onChange}>
-                <FormControl>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih tema">
-                      {(value: (typeof themeIds)[number] | null) =>
-                        value ? themes[value].label : "Pilih tema"
-                      }
-                    </SelectValue>
-                  </SelectTrigger>
-                </FormControl>
-                <SelectContent>
-                  {themeIds.map((id) => (
-                    <SelectItem key={id} value={id}>
-                      <span className="flex items-center gap-2">
-                        <span className="flex gap-0.5">
-                          {Object.entries(themes[id].swatch).map(
-                            ([name, color]) => (
-                              <span
-                                key={name}
-                                className="size-3 rounded-full border"
-                                style={{ backgroundColor: color }}
-                              />
-                            )
-                          )}
-                        </span>
-                        <span>
-                          <span className="block font-medium">
-                            {themes[id].label}
-                          </span>
-                          <span className="block text-xs text-muted-foreground">
-                            {themes[id].description}
-                          </span>
-                        </span>
-                      </span>
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
+              <FormControl>
+                <ThemePicker value={field.value} onChange={field.onChange} />
+              </FormControl>
               <FormMessage />
             </FormItem>
           )}
