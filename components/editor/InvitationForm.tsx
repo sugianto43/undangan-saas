@@ -9,6 +9,7 @@ import {
   invitationSchema,
   type InvitationInput,
 } from "@/lib/validations/invitation"
+import { themeIds, themes } from "@/components/themes/themes"
 import { slugify } from "@/lib/slug"
 import { Button } from "@/components/ui/button"
 import {
@@ -56,6 +57,7 @@ export function InvitationForm({
       location_text: defaultValues?.location_text ?? "",
       location_link: defaultValues?.location_link ?? "",
       description: defaultValues?.description ?? "",
+      theme_id: defaultValues?.theme_id ?? "classic",
     },
   })
 
@@ -78,6 +80,51 @@ export function InvitationForm({
                   {eventTypes.map((type) => (
                     <SelectItem key={type} value={type}>
                       {eventTypeLabels[type]}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+
+        <FormField
+          control={form.control}
+          name="theme_id"
+          render={({ field }) => (
+            <FormItem>
+              <FormLabel>Tema</FormLabel>
+              <Select value={field.value} onValueChange={field.onChange}>
+                <FormControl>
+                  <SelectTrigger className="w-full">
+                    <SelectValue placeholder="Pilih tema" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {themeIds.map((id) => (
+                    <SelectItem key={id} value={id}>
+                      <span className="flex items-center gap-2">
+                        <span className="flex gap-0.5">
+                          {Object.entries(themes[id].swatch).map(
+                            ([name, color]) => (
+                              <span
+                                key={name}
+                                className="size-3 rounded-full border"
+                                style={{ backgroundColor: color }}
+                              />
+                            )
+                          )}
+                        </span>
+                        <span>
+                          <span className="block font-medium">
+                            {themes[id].label}
+                          </span>
+                          <span className="block text-xs text-muted-foreground">
+                            {themes[id].description}
+                          </span>
+                        </span>
+                      </span>
                     </SelectItem>
                   ))}
                 </SelectContent>

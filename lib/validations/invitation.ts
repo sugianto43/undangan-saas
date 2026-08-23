@@ -1,4 +1,5 @@
 import { z } from "zod"
+import { themeIds } from "@/components/themes/themes"
 
 export const eventTypes = ["wedding", "birthday", "engagement"] as const
 
@@ -40,6 +41,7 @@ export const invitationSchema = z.object({
     .max(2000, { message: "Deskripsi maksimal 2000 karakter" })
     .optional()
     .or(z.literal("")),
+  theme_id: z.enum(themeIds, { message: "Pilih tema" }),
 })
 
 export type InvitationInput = z.infer<typeof invitationSchema>

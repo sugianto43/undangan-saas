@@ -72,10 +72,10 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 6 — Multi-tema
 
-- [ ] Definisikan struktur tema di `components/themes/` (classic, modern, minimal — 3 dulu)
-- [ ] Tema hanya styling (warna, font) — struktur komponen sama
-- [ ] Dropdown pilih tema di form editor, preview mini per tema
-- [ ] Terapkan `theme_id` ke rendering halaman publik
+- [x] Definisikan struktur tema di `components/themes/` (classic, modern, minimal — 3 dulu)
+- [x] Tema hanya styling (warna, font) — struktur komponen sama
+- [x] Dropdown pilih tema di form editor, preview mini per tema
+- [x] Terapkan `theme_id` ke rendering halaman publik
 
 ## Phase 7 — Countdown + Polish UI/UX
 

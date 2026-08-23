@@ -9,6 +9,7 @@ const validInput = {
   location_text: "Jakarta",
   location_link: "https://maps.google.com/xyz",
   description: "Kami mengundang Anda ke acara pernikahan kami",
+  theme_id: "classic" as const,
 }
 
 describe("invitationSchema", () => {
@@ -81,6 +82,14 @@ describe("invitationSchema", () => {
     const result = invitationSchema.safeParse({
       ...validInput,
       location_link: "bukan-url",
+    })
+    expect(result.success).toBe(false)
+  })
+
+  it("menolak theme_id di luar enum", () => {
+    const result = invitationSchema.safeParse({
+      ...validInput,
+      theme_id: "flashy",
     })
     expect(result.success).toBe(false)
   })

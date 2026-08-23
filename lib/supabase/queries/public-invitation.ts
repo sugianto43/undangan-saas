@@ -10,7 +10,7 @@ export async function getPublishedInvitationBySlug(
   const { data, error } = await supabase
     .from("invitations")
     .select(
-      "id, title, event_type, event_date, location_text, location_link, description, cover_image_url"
+      "id, title, event_type, event_date, location_text, location_link, description, cover_image_url, theme_id"
     )
     .eq("slug", slug)
     .eq("status", "published")
