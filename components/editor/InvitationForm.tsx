@@ -73,7 +73,11 @@ export function InvitationForm({
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih tipe acara" />
+                    <SelectValue placeholder="Pilih tipe acara">
+                      {(value: (typeof eventTypes)[number] | null) =>
+                        value ? eventTypeLabels[value] : "Pilih tipe acara"
+                      }
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -98,7 +102,11 @@ export function InvitationForm({
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih tema" />
+                    <SelectValue placeholder="Pilih tema">
+                      {(value: (typeof themeIds)[number] | null) =>
+                        value ? themes[value].label : "Pilih tema"
+                      }
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
