@@ -14,11 +14,10 @@ export async function POST(request: Request) {
   }
 
   const supabase = await createClient()
-  const { data, error } = await supabase
-    .from("rsvps")
-    .insert(parsed.data)
-    .select()
-    .single()
+  // No .select() here on purpose: rsvps has no public SELECT policy (RSVP
+  // status is host-only), and RETURNING is subject to RLS SELECT checks too,
+  // so requesting the row back would make every anon insert fail.
+  const { error } = await supabase.from("rsvps").insert(parsed.data)
 
   if (error) {
     return NextResponse.json(
@@ -27,5 +26,5 @@ export async function POST(request: Request) {
     )
   }
 
-  return NextResponse.json(data, { status: 201 })
+  return NextResponse.json({ success: true }, { status: 201 })
 }
