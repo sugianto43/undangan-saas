@@ -15,7 +15,11 @@ export function ThemeWrapper({
   return (
     <div
       data-invitation-theme={themeId}
-      className={cn(themeFonts[themeId].variable, className)}
+      className={cn(
+        "bg-background text-foreground",
+        themeFonts[themeId].variable,
+        className
+      )}
     >
       {children}
     </div>
