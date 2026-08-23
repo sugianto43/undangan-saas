@@ -9,18 +9,18 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 0 — Project Setup
 
-- [ ] Init Next.js (App Router) + TypeScript, `strict: true`
-- [ ] Setup Tailwind CSS
-- [ ] Setup shadcn/ui (init + tambah komponen dasar: button, input, form, card, dialog)
-- [ ] Install & setup TanStack Query (`QueryProvider` di `components/providers/query-provider.tsx`, wrap root layout)
-- [ ] Install React Hook Form + Zod
-- [ ] Setup Supabase project (dev), simpan credential di `.env.local`, buat `.env.example`
-- [ ] Buat `lib/supabase/client.ts` (browser) dan `lib/supabase/server.ts` (server-only, `import "server-only"`)
-- [ ] Jalankan SQL migration awal (tabel `invitations`, `invitation_photos`, `rsvps`, `wishes` — dari PRD.md section 7) + aktifkan RLS policy
-- [ ] Setup ESLint + Prettier + `pnpm typecheck` script
-- [ ] Setup Vitest dasar
-- [ ] Buat struktur folder sesuai PRD.md section 9
-- [ ] README.md project: cara run lokal, env yang dibutuhkan
+- [x] Init Next.js (App Router) + TypeScript, `strict: true`
+- [x] Setup Tailwind CSS
+- [x] Setup shadcn/ui (init + tambah komponen dasar: button, input, form, card, dialog)
+- [x] Install & setup TanStack Query (`QueryProvider` di `components/providers/query-provider.tsx`, wrap root layout)
+- [x] Install React Hook Form + Zod
+- [x] Setup Supabase project (dev), simpan credential di `.env.local`, buat `.env.example` — **`.env.example` dibuat; user perlu isi `.env.local` dengan credential Supabase project sendiri, belum ada project Supabase yang dibuat**
+- [x] Buat `lib/supabase/client.ts` (browser) dan `lib/supabase/server.ts` (server-only, `import "server-only"`)
+- [x] Jalankan SQL migration awal (tabel `invitations`, `invitation_photos`, `rsvps`, `wishes` — dari PRD.md section 7) + aktifkan RLS policy — **file migration `supabase/migrations/0001_init.sql` dibuat, belum dijalankan ke project Supabase nyata (belum ada project)**
+- [x] Setup ESLint + Prettier + `pnpm typecheck` script
+- [x] Setup Vitest dasar
+- [x] Buat struktur folder sesuai PRD.md section 9
+- [x] README.md project: cara run lokal, env yang dibutuhkan
 
 ## Phase 1 — Auth
 
