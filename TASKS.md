@@ -45,11 +45,11 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 3 — Halaman Publik Minimal
 
-- [ ] `/u/[slug]` — Server Component, fetch invitation by slug (published only, RLS enforce)
-- [ ] Section: cover (nama dari `?to=` query param, fallback default), info acara (tanggal, waktu, lokasi + link maps), deskripsi
-- [ ] 1 desain default dulu (belum multi-tema)
-- [ ] 404 page kalau slug tidak ada / belum published
-- [ ] Mobile-first responsive check
+- [x] `/u/[slug]` — Server Component, fetch invitation by slug (published only, RLS enforce)
+- [x] Section: cover (nama dari `?to=` query param, fallback default), info acara (tanggal, waktu, lokasi + link maps), deskripsi
+- [x] 1 desain default dulu (belum multi-tema)
+- [x] 404 page kalau slug tidak ada / belum published
+- [x] Mobile-first responsive check
 
 ## Phase 4 — RSVP & Wishes
 
