@@ -2,19 +2,18 @@
 
 import Link from "next/link"
 import { toast } from "sonner"
+import { MailCheckIcon, Trash2Icon } from "lucide-react"
 import { eventTypeLabels } from "@/lib/validations/invitation"
 import {
   useDeleteInvitation,
   usePublishInvitation,
 } from "@/lib/queries/useInvitationMutations"
 import type { InvitationWithRsvpCount } from "@/types/invitation"
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { DeleteInvitationDialog } from "@/components/dashboard/DeleteInvitationDialog"
 
 const dateFormatter = new Intl.DateTimeFormat("id-ID", {
   dateStyle: "medium",
-  timeStyle: "short",
 })
 
 export function InvitationCard({
@@ -49,29 +48,38 @@ export function InvitationCard({
   }
 
   return (
-    <Card>
-      <CardHeader>
-        <div className="flex items-start justify-between gap-2">
-          <CardTitle>{invitation.title}</CardTitle>
+    <article className="glass-panel group flex flex-col overflow-hidden rounded-2xl transition-transform duration-300 hover:-translate-y-1">
+      <div className="relative flex h-32 items-center justify-center overflow-hidden bg-linear-to-br from-secondary to-accent">
+        <span className="font-heading text-5xl font-bold text-foreground/20 italic">
+          {invitation.title.charAt(0)}
+        </span>
+        <div className="absolute top-3 right-3 flex items-center gap-1.5 rounded-full border border-border bg-card/90 px-2.5 py-1 text-xs font-medium shadow-sm backdrop-blur-md">
           <span
             className={
               isPublished
-                ? "rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
-                : "rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground"
+                ? "size-1.5 rounded-full bg-emerald-500"
+                : "size-1.5 rounded-full bg-muted-foreground"
             }
-          >
-            {isPublished ? "Published" : "Draft"}
-          </span>
+          />
+          {isPublished ? "Published" : "Draft"}
         </div>
-      </CardHeader>
-      <CardContent className="space-y-3">
-        <dl className="space-y-1 text-sm text-muted-foreground">
-          <div>{eventTypeLabels[invitation.event_type]}</div>
-          <div>{dateFormatter.format(new Date(invitation.event_date))}</div>
-          <div>{invitation.rsvp_count} RSVP</div>
-        </dl>
+      </div>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+      <div className="flex flex-1 flex-col p-4">
+        <h4 className="font-heading text-lg leading-tight font-semibold text-foreground">
+          {invitation.title}
+        </h4>
+        <p className="mt-1 text-sm text-muted-foreground">
+          {eventTypeLabels[invitation.event_type]} ·{" "}
+          {dateFormatter.format(new Date(invitation.event_date))}
+        </p>
+
+        <div className="mt-3 flex items-center gap-1.5 border-t border-border pt-3 text-sm text-muted-foreground">
+          <MailCheckIcon className="size-4 text-primary" />
+          {invitation.rsvp_count} RSVP
+        </div>
+
+        <div className="mt-3 flex flex-wrap items-center gap-2">
           <Button
             variant="outline"
             size="sm"
@@ -97,7 +105,7 @@ export function InvitationCard({
             Preview
           </Button>
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
             onClick={handleTogglePublish}
             disabled={publishInvitation.isPending}
@@ -109,13 +117,18 @@ export function InvitationCard({
             onConfirm={handleDelete}
             pending={deleteInvitation.isPending}
             trigger={
-              <Button variant="destructive" size="sm">
-                Hapus
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="ml-auto text-muted-foreground hover:text-destructive"
+                aria-label="Hapus undangan"
+              >
+                <Trash2Icon />
               </Button>
             }
           />
         </div>
-      </CardContent>
-    </Card>
+      </div>
+    </article>
   )
 }

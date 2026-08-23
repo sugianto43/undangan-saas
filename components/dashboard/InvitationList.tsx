@@ -29,12 +29,12 @@ export function InvitationList() {
 
   if (!invitations || invitations.length === 0) {
     return (
-      <div className="rounded-lg border border-dashed p-8 text-center">
+      <div className="glass-panel rounded-2xl border border-dashed border-border p-10 text-center">
         <p className="text-sm text-muted-foreground">
           Belum ada undangan. Buat undangan pertama Anda.
         </p>
         <Button
-          className="mt-4"
+          className="mt-4 rounded-full"
           nativeButton={false}
           render={<Link href="/dashboard/new" />}
         >

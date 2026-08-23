@@ -70,7 +70,7 @@ export function WishForm({ invitationId }: { invitationId: string }) {
             <FormItem>
               <FormLabel>Nama</FormLabel>
               <FormControl>
-                <Input placeholder="Nama Anda" {...field} />
+                <Input className="h-11" placeholder="Nama Anda" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -91,7 +91,11 @@ export function WishForm({ invitationId }: { invitationId: string }) {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={createWish.isPending}>
+        <Button
+          type="submit"
+          className="h-11 w-full"
+          disabled={createWish.isPending}
+        >
           {createWish.isPending ? "Mengirim..." : "Kirim ucapan"}
         </Button>
       </form>

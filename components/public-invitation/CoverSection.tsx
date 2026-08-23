@@ -26,40 +26,53 @@ export function CoverSection({
           />
           <div className="absolute inset-0 bg-black/40" />
         </>
-      ) : null}
-      <p
+      ) : (
+        <div
+          aria-hidden
+          className="absolute inset-0"
+          style={{
+            background:
+              "radial-gradient(circle at 50% 40%, var(--color-accent) 0%, transparent 55%)",
+            opacity: 0.12,
+          }}
+        />
+      )}
+
+      <div
         className={cn(
-          "text-sm tracking-widest uppercase",
-          coverUrl ? "relative text-white/80" : "text-muted-foreground"
+          "relative flex flex-col items-center gap-6",
+          !coverUrl && "rounded-2xl border border-accent/40 px-10 py-14 sm:px-14"
         )}
       >
-        {eventTypeLabels[invitation.event_type]}
-      </p>
-      <h1
-        className={cn(
-          "font-heading text-3xl font-semibold text-balance sm:text-4xl",
-          coverUrl && "relative text-white"
-        )}
-      >
-        {invitation.title}
-      </h1>
-      <div className={cn("space-y-1", coverUrl && "relative")}>
         <p
           className={cn(
-            "text-sm",
+            "text-sm tracking-widest uppercase",
             coverUrl ? "text-white/80" : "text-muted-foreground"
           )}
         >
-          Kepada Yth.
+          {eventTypeLabels[invitation.event_type]}
         </p>
-        <p
+        <h1
           className={cn(
-            "text-lg font-medium",
+            "font-heading text-3xl font-semibold text-balance sm:text-4xl",
             coverUrl && "text-white"
           )}
         >
-          {guestName}
-        </p>
+          {invitation.title}
+        </h1>
+        <div className="space-y-1">
+          <p
+            className={cn(
+              "text-sm",
+              coverUrl ? "text-white/80" : "text-muted-foreground"
+            )}
+          >
+            Kepada Yth.
+          </p>
+          <p className={cn("text-lg font-medium", coverUrl && "text-white")}>
+            {guestName}
+          </p>
+        </div>
       </div>
     </section>
   )

@@ -23,7 +23,7 @@ export default async function InvitationResponsesPage(
   // explicitly rather than relying on RLS alone for this owner-only page.
   const { data: invitation } = await supabase
     .from("invitations")
-    .select("id")
+    .select("id, title")
     .eq("id", id)
     .eq("user_id", user.id)
     .maybeSingle()
@@ -33,23 +33,36 @@ export default async function InvitationResponsesPage(
   }
 
   return (
-    <main className="mx-auto max-w-2xl space-y-10 p-8">
+    <main className="mx-auto max-w-3xl space-y-10 p-6 md:p-10">
       <div>
         <Button
           variant="link"
           size="sm"
-          className="mb-1 px-0"
+          className="mb-2 px-0"
           nativeButton={false}
           render={<Link href="/dashboard" />}
         >
           ← Kembali ke dashboard
         </Button>
-        <h1 className="mb-4 text-2xl font-semibold">Rekap RSVP</h1>
+        <p className="text-xs tracking-widest text-muted-foreground uppercase">
+          Laporan Undangan
+        </p>
+        <h1 className="font-heading text-3xl font-bold text-foreground">
+          {invitation.title}
+        </h1>
+      </div>
+
+      <div>
+        <h2 className="mb-4 font-heading text-lg font-semibold text-foreground">
+          Rekap RSVP
+        </h2>
         <ResponsesSummary invitationId={id} />
       </div>
 
       <div>
-        <h2 className="mb-4 text-lg font-medium">Ucapan</h2>
+        <h2 className="mb-4 font-heading text-lg font-semibold text-foreground">
+          Ucapan
+        </h2>
         <WishesList invitationId={id} />
       </div>
     </main>

@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { getInvitationForPreview } from "@/lib/supabase/queries/invitations"
@@ -6,7 +5,9 @@ import { getInvitationPageMedia } from "@/lib/supabase/invitation-page-media"
 import { InvitationPageContent } from "@/components/public-invitation/InvitationPageContent"
 import { ThemeWrapper } from "@/components/themes/ThemeWrapper"
 import { resolveThemeId } from "@/components/themes/themes"
-import { Button } from "@/components/ui/button"
+import { PreviewTopBar } from "@/components/dashboard/PreviewTopBar"
+import { PreviewFrame } from "@/components/dashboard/PreviewFrame"
+import { PublishSidebar } from "@/components/dashboard/PublishSidebar"
 
 export default async function InvitationPreviewPage(
   props: PageProps<"/dashboard/[id]/preview">
@@ -34,30 +35,24 @@ export default async function InvitationPreviewPage(
   )
 
   return (
-    <div>
-      <div className="sticky top-0 z-10 flex items-center justify-between gap-2 border-b bg-background p-3 text-sm">
-        <p className="text-muted-foreground">
-          Mode preview — begini tampilan undangan Anda untuk tamu
-        </p>
-        <Button
-          variant="outline"
-          size="sm"
-          nativeButton={false}
-          render={<Link href={`/dashboard/${id}/edit`} />}
-        >
-          Kembali edit
-        </Button>
-      </div>
+    <div className="flex flex-1 flex-col">
+      <PreviewTopBar invitationId={id} status={invitation.status} />
 
-      <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
-        <InvitationPageContent
-          invitation={invitation}
-          guestName="Tamu Undangan"
-          coverUrl={coverUrl}
-          galleryPhotos={galleryPhotos}
-          interactive={false}
-        />
-      </ThemeWrapper>
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col md:flex-row">
+        <PreviewFrame>
+          <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
+            <InvitationPageContent
+              invitation={invitation}
+              guestName="Tamu Undangan"
+              coverUrl={coverUrl}
+              galleryPhotos={galleryPhotos}
+              interactive={false}
+            />
+          </ThemeWrapper>
+        </PreviewFrame>
+
+        <PublishSidebar invitationId={id} status={invitation.status} />
+      </div>
     </div>
   )
 }

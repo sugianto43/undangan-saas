@@ -47,7 +47,7 @@ export function EventInfoSection({
           ) : null}
           {invitation.location_link ? (
             <Button
-              className="w-full"
+              className="h-11 w-full"
               nativeButton={false}
               render={
                 <a

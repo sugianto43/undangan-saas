@@ -80,7 +80,7 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
             <FormItem>
               <FormLabel>Nama</FormLabel>
               <FormControl>
-                <Input placeholder="Nama Anda" {...field} />
+                <Input className="h-11" placeholder="Nama Anda" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
@@ -95,8 +95,12 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
               <FormLabel>Konfirmasi kehadiran</FormLabel>
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
-                  <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih status kehadiran" />
+                  <SelectTrigger className="h-11 w-full">
+                    <SelectValue placeholder="Pilih status kehadiran">
+                      {(value: (typeof attendingOptions)[number] | null) =>
+                        value ? attendingLabels[value] : "Pilih status kehadiran"
+                      }
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
@@ -120,6 +124,7 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
               <FormLabel>Jumlah tamu</FormLabel>
               <FormControl>
                 <Input
+                  className="h-11"
                   type="number"
                   min={1}
                   max={20}
@@ -132,7 +137,11 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={createRsvp.isPending}>
+        <Button
+          type="submit"
+          className="h-11 w-full"
+          disabled={createRsvp.isPending}
+        >
           {createRsvp.isPending ? "Mengirim..." : "Kirim RSVP"}
         </Button>
       </form>

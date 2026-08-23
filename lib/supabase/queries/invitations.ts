@@ -4,6 +4,8 @@ import type { SupabaseClient } from "@supabase/supabase-js"
 import type { InvitationInput } from "@/lib/validations/invitation"
 import type { InvitationWithRsvpCount, PublicInvitation } from "@/types/invitation"
 
+type InvitationPreview = PublicInvitation & { status: "draft" | "published" }
+
 type RsvpCountRow = { count: number }
 type InvitationRow = InvitationWithRsvpCount & { rsvps: RsvpCountRow[] }
 
@@ -96,14 +98,14 @@ export async function getInvitationForPreview(
   const { data, error } = await supabase
     .from("invitations")
     .select(
-      "id, title, event_type, event_date, location_text, location_link, description, cover_image_url, theme_id"
+      "id, title, event_type, event_date, location_text, location_link, description, cover_image_url, theme_id, status"
     )
     .eq("id", id)
     .eq("user_id", userId)
     .maybeSingle()
 
   if (error) throw error
-  return data as PublicInvitation | null
+  return data as InvitationPreview | null
 }
 
 export async function setInvitationStatus(

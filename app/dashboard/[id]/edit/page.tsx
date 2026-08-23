@@ -37,24 +37,26 @@ export default function EditInvitationPage() {
   }
 
   return (
-    <main className="mx-auto max-w-xl space-y-6 p-8">
-      <div className="flex items-center justify-between">
+    <main className="mx-auto max-w-2xl space-y-8 p-6 md:p-10">
+      <div className="flex items-start justify-between gap-4">
         <div>
           <Button
             variant="link"
             size="sm"
-            className="mb-1 px-0"
+            className="mb-2 px-0"
             nativeButton={false}
             render={<Link href="/dashboard" />}
           >
             ← Kembali ke dashboard
           </Button>
-          <h1 className="text-2xl font-semibold">Edit undangan</h1>
+          <h1 className="font-heading text-3xl font-bold text-foreground">
+            Edit Undangan
+          </h1>
         </div>
         {invitation ? (
           <Button
             variant="outline"
-            size="sm"
+            className="rounded-full"
             nativeButton={false}
             render={<Link href={`/dashboard/${invitation.id}/preview`} />}
           >
@@ -79,7 +81,7 @@ export default function EditInvitationPage() {
 
       {invitation ? (
         <div className="space-y-8">
-          <div className="space-y-6 rounded-lg border p-4">
+          <div className="glass-panel space-y-6 rounded-2xl p-6">
             <CoverImageUpload
               invitationId={invitation.id}
               coverPath={invitation.cover_image_url}
@@ -87,20 +89,28 @@ export default function EditInvitationPage() {
             <GalleryUpload invitationId={invitation.id} />
           </div>
 
-          <InvitationForm
-            key={invitation.id}
-            defaultValues={{
-              ...invitation,
-              event_date: toDatetimeLocalValue(invitation.event_date),
-              location_text: invitation.location_text ?? "",
-              location_link: invitation.location_link ?? "",
-              description: invitation.description ?? "",
-            }}
-            onSubmit={handleSubmit}
-            submitLabel="Simpan perubahan"
-            pending={updateInvitation.isPending}
-            serverError={updateInvitation.error?.message}
-          />
+          <div className="glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8">
+            <div
+              aria-hidden
+              className="pointer-events-none absolute -top-32 -right-32 size-64 rounded-full bg-secondary opacity-50 blur-3xl"
+            />
+            <div className="relative">
+              <InvitationForm
+                key={invitation.id}
+                defaultValues={{
+                  ...invitation,
+                  event_date: toDatetimeLocalValue(invitation.event_date),
+                  location_text: invitation.location_text ?? "",
+                  location_link: invitation.location_link ?? "",
+                  description: invitation.description ?? "",
+                }}
+                onSubmit={handleSubmit}
+                submitLabel="Simpan perubahan"
+                pending={updateInvitation.isPending}
+                serverError={updateInvitation.error?.message}
+              />
+            </div>
+          </div>
         </div>
       ) : null}
     </main>

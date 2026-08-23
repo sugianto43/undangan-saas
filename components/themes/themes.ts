@@ -1,11 +1,15 @@
-export const themeIds = ["classic", "modern", "minimal"] as const
+export const themeIds = [
+  "royal_classic",
+  "modern_minimalist",
+  "floral_enchantment",
+] as const
 
 export type ThemeId = (typeof themeIds)[number]
 
 export function resolveThemeId(value: string): ThemeId {
   return (themeIds as readonly string[]).includes(value)
     ? (value as ThemeId)
-    : "classic"
+    : "royal_classic"
 }
 
 export const themes: Record<
@@ -13,35 +17,35 @@ export const themes: Record<
   {
     label: string
     description: string
-    /** Preview swatches for the theme picker dropdown. */
+    /** Preview swatches for the theme picker. */
     swatch: { background: string; primary: string; accent: string }
   }
 > = {
-  classic: {
-    label: "Classic",
-    description: "Elegan, hangat, serif — cocok untuk pernikahan tradisional",
+  royal_classic: {
+    label: "Royal Classic",
+    description: "Ivory hangat, Rose Copper, serif elegan — pernikahan tradisional",
     swatch: {
-      background: "oklch(0.98 0.01 85)",
-      primary: "oklch(0.35 0.08 30)",
-      accent: "oklch(0.85 0.05 75)",
+      background: "oklch(0.98 0.005 85)",
+      primary: "oklch(0.56 0.1 15)",
+      accent: "oklch(0.78 0.14 75)",
     },
   },
-  modern: {
-    label: "Modern",
-    description: "Bold, sans-serif, warna cerah — cocok untuk acara kekinian",
+  modern_minimalist: {
+    label: "Modern Minimalist",
+    description: "Latar gelap, kontras tinggi, minimal — acara kekinian",
     swatch: {
-      background: "oklch(1 0 0)",
-      primary: "oklch(0.45 0.15 250)",
-      accent: "oklch(0.7 0.15 190)",
+      background: "oklch(0.16 0.008 260)",
+      primary: "oklch(0.85 0.01 260)",
+      accent: "oklch(0.56 0.1 15)",
     },
   },
-  minimal: {
-    label: "Minimal",
-    description: "Bersih, monokrom, banyak whitespace — cocok untuk gaya simpel",
+  floral_enchantment: {
+    label: "Floral Enchantment",
+    description: "Gradien blush & champagne, romantis, botanikal",
     swatch: {
-      background: "oklch(1 0 0)",
-      primary: "oklch(0.2 0 0)",
-      accent: "oklch(0.9 0 0)",
+      background: "oklch(0.97 0.015 30)",
+      primary: "oklch(0.5 0.12 10)",
+      accent: "oklch(0.9 0.03 90)",
     },
   },
 }

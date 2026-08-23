@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-body);
+  --font-mono: ui-monospace, monospace;
+  --font-heading: var(--font-display);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -48,73 +48,94 @@
   --radius-4xl: calc(var(--radius) * 2.6);
 }
 
+/*
+ * Glassmorphic surface per DESIGN.md: 16px backdrop-blur, translucent white
+ * fill, faint border, soft tinted ambient shadow. Applied selectively to
+ * app-shell cards/panels (dashboard, landing) — not baked into the shared
+ * Card primitive, which also renders inside the guest-facing invitation
+ * themes that have their own independent token system.
+ */
+.glass-panel {
+  background-color: color-mix(in oklch, var(--color-card) 75%, transparent);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid color-mix(in oklch, var(--color-foreground) 8%, transparent);
+  box-shadow: 0 20px 40px -20px color-mix(in oklch, var(--color-secondary-foreground, var(--color-foreground)) 15%, transparent);
+}
+
+/*
+ * "The Modern Host" — the app's own brand palette (dashboard, login,
+ * landing), from design/invito/DESIGN.md. Champagne warmth + Deep Charcoal
+ * typography + Rose Copper "celebration" accent, minimalism + glassmorphism.
+ * Distinct from the per-invitation guest-facing themes in components/themes/.
+ */
 :root {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --radius: 0.625rem;
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+  --background: #f9f9f9;
+  --foreground: #1a1c1c;
+  --card: #ffffff;
+  --card-foreground: #1a1c1c;
+  --popover: #ffffff;
+  --popover-foreground: #1a1c1c;
+  --primary: #8c4b55;
+  --primary-foreground: #ffffff;
+  --secondary: #f7e7ce;
+  --secondary-foreground: #4b463d;
+  --muted: #f3f3f4;
+  --muted-foreground: #4b463d;
+  --accent: #ffe2e4;
+  --accent-foreground: #98545f;
+  --destructive: #ba1a1a;
+  --border: #cec5ba;
+  --input: #cec5ba;
+  --ring: #8c4b55;
+  --chart-1: #8c4b55;
+  --chart-2: #685d4a;
+  --chart-3: #5d5f5e;
+  --chart-4: #4b463d;
+  --chart-5: #7d766c;
+  --radius: 0.6rem;
+  --sidebar: #f3f3f4;
+  --sidebar-foreground: #1a1c1c;
+  --sidebar-primary: #8c4b55;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #ffe2e4;
+  --sidebar-accent-foreground: #98545f;
+  --sidebar-border: #cec5ba;
+  --sidebar-ring: #b76e79;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
+  --background: #1a1c1c;
+  --foreground: #f0f1f1;
+  --card: #2f3131;
+  --card-foreground: #f0f1f1;
+  --popover: #2f3131;
+  --popover-foreground: #f0f1f1;
+  --primary: #d3a3ab;
+  --primary-foreground: #1a1c1c;
+  --secondary: #454747;
+  --secondary-foreground: #f0f1f1;
+  --muted: #2f3131;
+  --muted-foreground: #cec5ba;
+  --accent: #70343e;
+  --accent-foreground: #ffd9dd;
+  --destructive: #ffb4ab;
   --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.87 0 0);
-  --chart-2: oklch(0.556 0 0);
-  --chart-3: oklch(0.439 0 0);
-  --chart-4: oklch(0.371 0 0);
-  --chart-5: oklch(0.269 0 0);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
+  --input: oklch(1 0 0 / 13%);
+  --ring: #d3a3ab;
+  --chart-1: #d3a3ab;
+  --chart-2: #ffb2bc;
+  --chart-3: #d3c5ad;
+  --chart-4: #c6c6c6;
+  --chart-5: #cec5ba;
+  --sidebar: #221f1a;
+  --sidebar-foreground: #f0f1f1;
+  --sidebar-primary: #d3a3ab;
+  --sidebar-primary-foreground: #1a1c1c;
+  --sidebar-accent: #70343e;
+  --sidebar-accent-foreground: #ffd9dd;
   --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  --sidebar-ring: #d3a3ab;
 }
 
 /*
@@ -122,17 +143,23 @@
  * [data-invitation-theme]. Components never branch on theme — they just
  * consume the same --primary/--background/--font-heading/etc. tokens, so
  * swapping the values here is enough to reskin the whole public page.
+ *
+ * The .font-heading utility compiles to `font-family: var(--font-display)`
+ * (Tailwind's `@theme inline` resolves --font-heading's alias at build time
+ * and bakes the resolved variable name into the utility), so the override
+ * has to target --font-display directly — overriding --font-heading here
+ * would have no runtime effect on that utility.
  */
 [data-invitation-theme] {
-  --font-heading: var(--font-theme, var(--font-sans));
+  --font-display: var(--font-theme, var(--font-body));
 }
 
-[data-invitation-theme="classic"] {
-  --background: oklch(0.98 0.01 85);
+[data-invitation-theme="royal_classic"] {
+  --background: oklch(0.98 0.006 85);
   --foreground: oklch(0.25 0.02 40);
-  --card: oklch(0.98 0.01 85);
+  --card: oklch(0.98 0.006 85);
   --card-foreground: oklch(0.25 0.02 40);
-  --primary: oklch(0.35 0.08 30);
+  --primary: oklch(0.56 0.1 15);
   --primary-foreground: oklch(0.98 0.01 85);
   --secondary: oklch(0.93 0.03 80);
   --secondary-foreground: oklch(0.25 0.02 40);
@@ -142,46 +169,46 @@
   --accent-foreground: oklch(0.25 0.02 40);
   --border: oklch(0.88 0.02 70);
   --input: oklch(0.88 0.02 70);
-  --ring: oklch(0.6 0.05 40);
+  --ring: oklch(0.56 0.1 15);
   --radius: 0.5rem;
 }
 
-[data-invitation-theme="modern"] {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.18 0.02 260);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.18 0.02 260);
-  --primary: oklch(0.45 0.15 250);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.95 0.02 250);
-  --secondary-foreground: oklch(0.18 0.02 260);
-  --muted: oklch(0.96 0.01 250);
-  --muted-foreground: oklch(0.5 0.02 260);
-  --accent: oklch(0.7 0.15 190);
-  --accent-foreground: oklch(0.98 0 0);
-  --border: oklch(0.9 0.02 250);
-  --input: oklch(0.9 0.02 250);
-  --ring: oklch(0.45 0.15 250);
-  --radius: 0.9rem;
+[data-invitation-theme="modern_minimalist"] {
+  --background: oklch(0.16 0.008 260);
+  --foreground: oklch(0.95 0.005 260);
+  --card: oklch(0.19 0.008 260);
+  --card-foreground: oklch(0.95 0.005 260);
+  --primary: oklch(0.85 0.01 260);
+  --primary-foreground: oklch(0.18 0.008 260);
+  --secondary: oklch(0.25 0.01 260);
+  --secondary-foreground: oklch(0.95 0.005 260);
+  --muted: oklch(0.24 0.008 260);
+  --muted-foreground: oklch(0.7 0.01 260);
+  --accent: oklch(0.56 0.1 15);
+  --accent-foreground: oklch(0.98 0.005 260);
+  --border: oklch(0.32 0.01 260);
+  --input: oklch(0.32 0.01 260);
+  --ring: oklch(0.85 0.01 260);
+  --radius: 0.15rem;
 }
 
-[data-invitation-theme="minimal"] {
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.15 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.15 0 0);
-  --primary: oklch(0.2 0 0);
-  --primary-foreground: oklch(0.98 0 0);
-  --secondary: oklch(0.96 0 0);
-  --secondary-foreground: oklch(0.15 0 0);
-  --muted: oklch(0.96 0 0);
-  --muted-foreground: oklch(0.55 0 0);
-  --accent: oklch(0.9 0 0);
-  --accent-foreground: oklch(0.15 0 0);
-  --border: oklch(0.9 0 0);
-  --input: oklch(0.9 0 0);
-  --ring: oklch(0.55 0 0);
-  --radius: 0.3rem;
+[data-invitation-theme="floral_enchantment"] {
+  --background: oklch(0.96 0.02 20);
+  --foreground: oklch(0.3 0.04 20);
+  --card: oklch(0.97 0.015 40);
+  --card-foreground: oklch(0.3 0.04 20);
+  --primary: oklch(0.5 0.12 10);
+  --primary-foreground: oklch(0.98 0.01 85);
+  --secondary: oklch(0.9 0.03 90);
+  --secondary-foreground: oklch(0.3 0.04 20);
+  --muted: oklch(0.93 0.02 60);
+  --muted-foreground: oklch(0.48 0.04 30);
+  --accent: oklch(0.9 0.03 90);
+  --accent-foreground: oklch(0.35 0.06 20);
+  --border: oklch(0.88 0.03 50);
+  --input: oklch(0.88 0.03 50);
+  --ring: oklch(0.5 0.12 10);
+  --radius: 1rem;
 }
 
 @layer base {

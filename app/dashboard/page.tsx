@@ -1,9 +1,9 @@
 import Link from "next/link"
-import { redirect } from "next/navigation"
-import { signOutAction } from "@/lib/actions/auth"
+import { CirclePlus } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { createClient } from "@/lib/supabase/server"
 import { InvitationList } from "@/components/dashboard/InvitationList"
+import { DashboardStats } from "@/components/dashboard/DashboardStats"
+import { createClient } from "@/lib/supabase/server"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -11,32 +11,37 @@ export default async function DashboardPage() {
     data: { user },
   } = await supabase.auth.getUser()
 
-  if (!user) {
-    redirect("/login")
-  }
+  const name = user?.email?.split("@")[0] ?? "Host"
 
   return (
-    <main className="flex flex-1 flex-col gap-6 p-8">
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-2xl font-semibold">Dashboard</h1>
-          <p className="text-sm text-muted-foreground">{user.email}</p>
+    <main className="flex flex-1 flex-col gap-8 p-6 md:p-10">
+      <div className="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div className="max-w-2xl">
+          <h1 className="font-heading text-2xl font-bold text-foreground capitalize md:text-3xl">
+            Selamat datang, {name}.
+          </h1>
+          <p className="mt-1 text-sm text-muted-foreground">
+            Berikut ringkasan undangan dan aktivitas terbaru Anda.
+          </p>
         </div>
-        <form action={signOutAction}>
-          <Button type="submit" variant="outline">
-            Keluar
-          </Button>
-        </form>
-      </div>
-
-      <div className="flex items-center justify-between">
-        <h2 className="text-lg font-medium">Undangan saya</h2>
-        <Button nativeButton={false} render={<Link href="/dashboard/new" />}>
+        <Button
+          className="w-fit gap-2 rounded-full"
+          nativeButton={false}
+          render={<Link href="/dashboard/new" />}
+        >
+          <CirclePlus className="size-4" />
           Buat undangan
         </Button>
       </div>
 
-      <InvitationList />
+      <DashboardStats />
+
+      <div>
+        <h2 className="mb-4 font-heading text-lg font-semibold text-foreground">
+          Undangan saya
+        </h2>
+        <InvitationList />
+      </div>
     </main>
   )
 }
