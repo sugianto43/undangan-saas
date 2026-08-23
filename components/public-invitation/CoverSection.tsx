@@ -37,7 +37,7 @@ export function CoverSection({
       </p>
       <h1
         className={cn(
-          "text-3xl font-semibold text-balance sm:text-4xl",
+          "font-heading text-3xl font-semibold text-balance sm:text-4xl",
           coverUrl && "relative text-white"
         )}
       >
