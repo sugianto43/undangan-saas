@@ -53,13 +53,13 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 4 — RSVP & Wishes
 
-- [ ] `lib/validations/rsvp.ts`, `lib/validations/wish.ts`
-- [ ] API Route Handlers: `POST /api/rsvps`, `POST /api/wishes` (public, RLS insert-only untuk published invitation)
-- [ ] Component Client `RsvpForm` di halaman publik (RHF + Zod + TanStack Query mutation)
-- [ ] Component Client `WishForm` + `WishesList` (tampil ucapan terbaru)
-- [ ] Soft-limit submit ganda via localStorage (bukan hard block)
-- [ ] `/dashboard/[id]/responses` — rekap RSVP (jumlah hadir/tidak/ragu, total tamu) + list ucapan, pakai TanStack Query
-- [ ] Unit test: Zod schema RSVP & wish
+- [x] `lib/validations/rsvp.ts`, `lib/validations/wish.ts`
+- [x] API Route Handlers: `POST /api/rsvps`, `POST /api/wishes` (public, RLS insert-only untuk published invitation)
+- [x] Component Client `RsvpForm` di halaman publik (RHF + Zod + TanStack Query mutation)
+- [x] Component Client `WishForm` + `WishesList` (tampil ucapan terbaru)
+- [x] Soft-limit submit ganda via localStorage (bukan hard block)
+- [x] `/dashboard/[id]/responses` — rekap RSVP (jumlah hadir/tidak/ragu, total tamu) + list ucapan, pakai TanStack Query
+- [x] Unit test: Zod schema RSVP & wish
 
 ## Phase 5 — Upload Foto
 
