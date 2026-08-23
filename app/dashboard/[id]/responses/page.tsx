@@ -1,7 +1,9 @@
+import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { ResponsesSummary } from "@/components/dashboard/ResponsesSummary"
 import { WishesList } from "@/components/public-invitation/WishesList"
+import { Button } from "@/components/ui/button"
 
 export default async function InvitationResponsesPage(
   props: PageProps<"/dashboard/[id]/responses">
@@ -33,7 +35,16 @@ export default async function InvitationResponsesPage(
   return (
     <main className="mx-auto max-w-2xl space-y-10 p-8">
       <div>
-        <h1 className="text-2xl font-semibold">Rekap RSVP</h1>
+        <Button
+          variant="link"
+          size="sm"
+          className="mb-1 px-0"
+          nativeButton={false}
+          render={<Link href="/dashboard" />}
+        >
+          ← Kembali ke dashboard
+        </Button>
+        <h1 className="mb-4 text-2xl font-semibold">Rekap RSVP</h1>
         <ResponsesSummary invitationId={id} />
       </div>
 

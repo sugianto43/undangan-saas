@@ -2,7 +2,7 @@ import "server-only"
 
 import type { SupabaseClient } from "@supabase/supabase-js"
 import type { InvitationInput } from "@/lib/validations/invitation"
-import type { InvitationWithRsvpCount } from "@/types/invitation"
+import type { InvitationWithRsvpCount, PublicInvitation } from "@/types/invitation"
 
 type RsvpCountRow = { count: number }
 type InvitationRow = InvitationWithRsvpCount & { rsvps: RsvpCountRow[] }
@@ -86,6 +86,24 @@ export async function deleteInvitation(supabase: SupabaseClient, id: string) {
 
   if (error) throw error
   return count ?? 0
+}
+
+export async function getInvitationForPreview(
+  supabase: SupabaseClient,
+  id: string,
+  userId: string
+) {
+  const { data, error } = await supabase
+    .from("invitations")
+    .select(
+      "id, title, event_type, event_date, location_text, location_link, description, cover_image_url, theme_id"
+    )
+    .eq("id", id)
+    .eq("user_id", userId)
+    .maybeSingle()
+
+  if (error) throw error
+  return data as PublicInvitation | null
 }
 
 export async function setInvitationStatus(

@@ -91,6 +91,14 @@ export function InvitationCard({
           <Button
             variant="outline"
             size="sm"
+            nativeButton={false}
+            render={<Link href={`/dashboard/${invitation.id}/preview`} />}
+          >
+            Preview
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleTogglePublish}
             disabled={publishInvitation.isPending}
           >

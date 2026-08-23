@@ -79,11 +79,11 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 7 — Countdown + Polish UI/UX
 
-- [ ] Countdown timer component (client, update tiap detik/menit)
-- [ ] Preview mode untuk host sebelum publish
-- [ ] Polish spacing/typography semua halaman (dashboard + publik)
-- [ ] Empty states (belum ada undangan, belum ada RSVP, belum ada ucapan)
-- [ ] Loading & error states konsisten (skeleton, toast error)
+- [x] Countdown timer component (client, update tiap detik/menit)
+- [x] Preview mode untuk host sebelum publish
+- [x] Polish spacing/typography semua halaman (dashboard + publik)
+- [x] Empty states (belum ada undangan, belum ada RSVP, belum ada ucapan)
+- [x] Loading & error states konsisten (skeleton, toast error)
 
 ## Phase 8 — QA End-to-End
 
