@@ -4,6 +4,7 @@ import { signOutAction } from "@/lib/actions/auth"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/server"
 import { Wordmark } from "@/components/brand/Wordmark"
+import { Sidebar } from "@/components/dashboard/Sidebar"
 
 export default async function DashboardLayout({
   children,
@@ -18,23 +19,21 @@ export default async function DashboardLayout({
   }
 
   return (
-    <div className="flex flex-1 flex-col">
-      <header className="flex items-center justify-between border-b border-border px-6 py-4">
-        <Link href="/dashboard">
-          <Wordmark />
-        </Link>
-        <div className="flex items-center gap-3">
-          <p className="hidden text-sm text-muted-foreground sm:block">
-            {user.email}
-          </p>
+    <div className="flex min-h-screen flex-1">
+      <Sidebar email={user.email ?? ""} />
+      <div className="flex flex-1 flex-col">
+        <header className="glass-panel sticky top-0 z-30 flex items-center justify-between border-b border-border px-4 py-3 md:hidden">
+          <Link href="/dashboard">
+            <Wordmark />
+          </Link>
           <form action={signOutAction}>
             <Button type="submit" variant="outline" size="sm">
               Keluar
             </Button>
           </form>
-        </div>
-      </header>
-      <div className="flex flex-1 flex-col">{children}</div>
+        </header>
+        <div className="flex flex-1 flex-col">{children}</div>
+      </div>
     </div>
   )
 }
