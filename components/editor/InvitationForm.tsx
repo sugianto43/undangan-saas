@@ -1,6 +1,7 @@
 "use client"
 
 import { useRef } from "react"
+import { ArrowRight } from "lucide-react"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import {
@@ -248,9 +249,16 @@ export function InvitationForm({
           <p className="text-sm text-destructive">{serverError}</p>
         ) : null}
 
-        <Button type="submit" disabled={pending}>
-          {submitLabel}
-        </Button>
+        <div className="flex items-center justify-end border-t border-border pt-6">
+          <Button
+            type="submit"
+            className="h-11 gap-2 rounded-full px-8"
+            disabled={pending}
+          >
+            {submitLabel}
+            <ArrowRight className="size-4" />
+          </Button>
+        </div>
       </form>
     </Form>
   )
