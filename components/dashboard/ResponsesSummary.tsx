@@ -152,8 +152,25 @@ export function ResponsesSummary({ invitationId }: { invitationId: string }) {
                       {rsvp.guest_count} orang
                     </p>
                   </td>
-                  <td className="p-4 text-muted-foreground">
-                    {attendingLabels[rsvp.attending]}
+                  <td className="p-4">
+                    <span
+                      className={cn(
+                        "inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-xs font-medium",
+                        rsvp.attending === "yes" && "bg-primary/10 text-primary",
+                        rsvp.attending === "maybe" && "bg-accent text-accent-foreground",
+                        rsvp.attending === "no" && "bg-destructive/10 text-destructive"
+                      )}
+                    >
+                      <span
+                        className={cn(
+                          "size-1.5 rounded-full",
+                          rsvp.attending === "yes" && "bg-primary",
+                          rsvp.attending === "maybe" && "bg-accent-foreground",
+                          rsvp.attending === "no" && "bg-destructive"
+                        )}
+                      />
+                      {attendingLabels[rsvp.attending]}
+                    </span>
                   </td>
                   <td className="p-4 text-muted-foreground">
                     {dateFormatter.format(new Date(rsvp.created_at))}
