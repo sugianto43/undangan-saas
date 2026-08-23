@@ -49,7 +49,7 @@ export function GalleryLightbox({ photos }: { photos: GalleryPhoto[] }) {
             variant="ghost"
             size="icon-sm"
             aria-label="Tutup"
-            className="absolute top-4 right-4 text-white hover:bg-white/10 hover:text-white"
+            className="absolute top-4 right-4 size-11 text-white hover:bg-white/10 hover:text-white"
             onClick={() => setOpenIndex(null)}
           >
             <XIcon />
@@ -61,7 +61,7 @@ export function GalleryLightbox({ photos }: { photos: GalleryPhoto[] }) {
               variant="ghost"
               size="icon-sm"
               aria-label="Foto sebelumnya"
-              className="absolute left-4 text-white hover:bg-white/10 hover:text-white"
+              className="absolute left-4 size-11 text-white hover:bg-white/10 hover:text-white"
               onClick={(e) => {
                 e.stopPropagation()
                 setOpenIndex((openIndex ?? 0) - 1)
@@ -90,7 +90,7 @@ export function GalleryLightbox({ photos }: { photos: GalleryPhoto[] }) {
               variant="ghost"
               size="icon-sm"
               aria-label="Foto berikutnya"
-              className="absolute right-4 text-white hover:bg-white/10 hover:text-white"
+              className="absolute right-4 size-11 text-white hover:bg-white/10 hover:text-white"
               onClick={(e) => {
                 e.stopPropagation()
                 setOpenIndex((openIndex ?? 0) + 1)

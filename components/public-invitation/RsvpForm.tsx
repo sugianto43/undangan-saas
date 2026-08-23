@@ -136,7 +136,11 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={createRsvp.isPending}>
+        <Button
+          type="submit"
+          className="h-11 w-full"
+          disabled={createRsvp.isPending}
+        >
           {createRsvp.isPending ? "Mengirim..." : "Kirim RSVP"}
         </Button>
       </form>

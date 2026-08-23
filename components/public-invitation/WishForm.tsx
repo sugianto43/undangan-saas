@@ -91,7 +91,11 @@ export function WishForm({ invitationId }: { invitationId: string }) {
           )}
         />
 
-        <Button type="submit" className="w-full" disabled={createWish.isPending}>
+        <Button
+          type="submit"
+          className="h-11 w-full"
+          disabled={createWish.isPending}
+        >
           {createWish.isPending ? "Mengirim..." : "Kirim ucapan"}
         </Button>
       </form>
