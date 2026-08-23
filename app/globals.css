@@ -127,9 +127,15 @@
  * [data-invitation-theme]. Components never branch on theme — they just
  * consume the same --primary/--background/--font-heading/etc. tokens, so
  * swapping the values here is enough to reskin the whole public page.
+ *
+ * The .font-heading utility compiles to `font-family: var(--font-display)`
+ * (Tailwind's `@theme inline` resolves --font-heading's alias at build time
+ * and bakes the resolved variable name into the utility), so the override
+ * has to target --font-display directly — overriding --font-heading here
+ * would have no runtime effect on that utility.
  */
 [data-invitation-theme] {
-  --font-heading: var(--font-theme, var(--font-sans));
+  --font-display: var(--font-theme, var(--font-body));
 }
 
 [data-invitation-theme="classic"] {
