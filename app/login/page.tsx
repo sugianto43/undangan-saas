@@ -15,21 +15,36 @@ export default async function LoginPage() {
   }
 
   return (
-    <main className="flex flex-1 flex-col">
-      <header className="p-6">
-        <Link href="/">
+    <main className="flex min-h-screen flex-col md:flex-row">
+      <div className="relative hidden overflow-hidden bg-muted md:flex md:w-1/2 md:flex-col md:justify-between md:p-12 lg:w-7/12">
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -top-24 -right-24 size-96 rounded-full bg-secondary opacity-60 blur-[100px]"
+        />
+        <div
+          aria-hidden
+          className="pointer-events-none absolute -bottom-24 -left-24 size-80 rounded-full bg-accent opacity-60 blur-[80px]"
+        />
+        <Link href="/" className="relative z-10">
           <Wordmark />
         </Link>
-      </header>
-      <div className="flex flex-1 items-center justify-center px-4 pb-16">
-        <div className="w-full max-w-sm space-y-8">
-          <div className="space-y-1 text-center">
-            <h1 className="font-heading text-2xl font-semibold">
-              Masuk ke akun Anda
-            </h1>
-            <p className="text-sm text-muted-foreground">
-              Kelola undangan digital Anda di satu tempat
-            </p>
+        <blockquote className="glass-panel relative z-10 rounded-2xl p-6">
+          <p className="font-heading text-xl text-balance text-foreground italic">
+            &ldquo;Setiap detail terkelola dengan sempurna. Invito mengubah
+            acara kami menjadi momen yang tak terlupakan.&rdquo;
+          </p>
+          <footer className="mt-3 text-xs tracking-widest text-muted-foreground uppercase">
+            — Sari, pengantin
+          </footer>
+        </blockquote>
+      </div>
+
+      <div className="flex flex-1 items-center justify-center px-4 py-16 md:w-1/2 lg:w-5/12">
+        <div className="w-full max-w-sm">
+          <div className="mb-6 text-center md:hidden">
+            <Link href="/" className="inline-flex">
+              <Wordmark />
+            </Link>
           </div>
           <LoginForm />
         </div>
