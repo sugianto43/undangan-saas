@@ -1,4 +1,3 @@
-import Link from "next/link"
 import { notFound, redirect } from "next/navigation"
 import { createClient } from "@/lib/supabase/server"
 import { getInvitationForPreview } from "@/lib/supabase/queries/invitations"
@@ -6,7 +5,7 @@ import { getInvitationPageMedia } from "@/lib/supabase/invitation-page-media"
 import { InvitationPageContent } from "@/components/public-invitation/InvitationPageContent"
 import { ThemeWrapper } from "@/components/themes/ThemeWrapper"
 import { resolveThemeId } from "@/components/themes/themes"
-import { Button } from "@/components/ui/button"
+import { PreviewActionBar } from "@/components/dashboard/PreviewActionBar"
 
 export default async function InvitationPreviewPage(
   props: PageProps<"/dashboard/[id]/preview">
@@ -35,19 +34,7 @@ export default async function InvitationPreviewPage(
 
   return (
     <div>
-      <div className="sticky top-0 z-10 flex items-center justify-between gap-2 border-b bg-background p-3 text-sm">
-        <p className="text-muted-foreground">
-          Mode preview — begini tampilan undangan Anda untuk tamu
-        </p>
-        <Button
-          variant="outline"
-          size="sm"
-          nativeButton={false}
-          render={<Link href={`/dashboard/${id}/edit`} />}
-        >
-          Kembali edit
-        </Button>
-      </div>
+      <PreviewActionBar invitationId={id} status={invitation.status} />
 
       <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
         <InvitationPageContent
