@@ -70,7 +70,7 @@ export function WishForm({ invitationId }: { invitationId: string }) {
             <FormItem>
               <FormLabel>Nama</FormLabel>
               <FormControl>
-                <Input placeholder="Nama Anda" {...field} />
+                <Input className="h-11" placeholder="Nama Anda" {...field} />
               </FormControl>
               <FormMessage />
             </FormItem>
