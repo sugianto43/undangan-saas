@@ -18,7 +18,7 @@ const fontBody = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "Undangan Digital",
+  title: "Invito — Undangan Digital",
   description: "Buat undangan digital sendiri, live dalam 5 menit.",
 };
 
