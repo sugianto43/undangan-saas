@@ -9,7 +9,9 @@ export default function InvitationNotFound() {
         Link ini mungkin salah ketik, sudah tidak berlaku, atau belum
         dipublikasikan oleh pemiliknya.
       </p>
-      <Button render={<Link href="/" />}>Kembali ke beranda</Button>
+      <Button nativeButton={false} render={<Link href="/" />}>
+        Kembali ke beranda
+      </Button>
     </main>
   )
 }

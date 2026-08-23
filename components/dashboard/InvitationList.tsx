@@ -33,7 +33,11 @@ export function InvitationList() {
         <p className="text-sm text-muted-foreground">
           Belum ada undangan. Buat undangan pertama Anda.
         </p>
-        <Button className="mt-4" render={<Link href="/dashboard/new" />}>
+        <Button
+          className="mt-4"
+          nativeButton={false}
+          render={<Link href="/dashboard/new" />}
+        >
           Buat undangan
         </Button>
       </div>

@@ -31,7 +31,9 @@ export default async function DashboardPage() {
 
       <div className="flex items-center justify-between">
         <h2 className="text-lg font-medium">Undangan saya</h2>
-        <Button render={<Link href="/dashboard/new" />}>Buat undangan</Button>
+        <Button nativeButton={false} render={<Link href="/dashboard/new" />}>
+          Buat undangan
+        </Button>
       </div>
 
       <InvitationList />

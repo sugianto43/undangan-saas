@@ -72,12 +72,18 @@ export function InvitationCard({
         </dl>
 
         <div className="flex flex-wrap gap-2 pt-2">
-          <Button variant="outline" size="sm" render={<Link href={`/dashboard/${invitation.id}/edit`} />}>
+          <Button
+            variant="outline"
+            size="sm"
+            nativeButton={false}
+            render={<Link href={`/dashboard/${invitation.id}/edit`} />}
+          >
             Edit
           </Button>
           <Button
             variant="outline"
             size="sm"
+            nativeButton={false}
             render={<Link href={`/dashboard/${invitation.id}/responses`} />}
           >
             Lihat rekap
