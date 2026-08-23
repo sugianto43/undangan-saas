@@ -46,6 +46,7 @@ export function CoverImageUpload({
             alt="Cover undangan"
             width={128}
             height={96}
+            priority
             className="h-24 w-32 rounded-md object-cover"
           />
         ) : (

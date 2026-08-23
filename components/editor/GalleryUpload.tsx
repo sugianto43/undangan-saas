@@ -116,6 +116,7 @@ export function GalleryUpload({ invitationId }: { invitationId: string }) {
                 src={photo.signedUrl}
                 alt="Foto galeri"
                 fill
+                sizes="(max-width: 640px) 33vw, 25vw"
                 className="rounded-md object-cover"
               />
               <div className="absolute inset-0 flex flex-col items-center justify-between rounded-md bg-black/0 p-1 opacity-0 transition group-hover:bg-black/40 group-hover:opacity-100">
