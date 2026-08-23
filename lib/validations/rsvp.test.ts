@@ -13,15 +13,12 @@ describe("rsvpInputSchema", () => {
     expect(result.success).toBe(true)
   })
 
-  it("mengoerce guest_count dari string angka", () => {
+  it("menolak guest_count berupa string", () => {
     const result = rsvpInputSchema.safeParse({
       ...validInput,
       guest_count: "3",
     })
-    expect(result.success).toBe(true)
-    if (result.success) {
-      expect(result.data.guest_count).toBe(3)
-    }
+    expect(result.success).toBe(false)
   })
 
   it("menolak nama kosong", () => {

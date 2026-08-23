@@ -14,7 +14,7 @@ export const rsvpInputSchema = z.object({
     .min(1, { message: "Nama wajib diisi" })
     .max(100, { message: "Nama maksimal 100 karakter" }),
   attending: z.enum(attendingOptions, { message: "Pilih status kehadiran" }),
-  guest_count: z.coerce
+  guest_count: z
     .number({ message: "Jumlah tamu wajib diisi" })
     .int({ message: "Jumlah tamu harus bilangan bulat" })
     .min(1, { message: "Jumlah tamu minimal 1" })
