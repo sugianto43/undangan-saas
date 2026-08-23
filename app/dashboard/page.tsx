@@ -1,7 +1,9 @@
+import Link from "next/link"
 import { redirect } from "next/navigation"
 import { signOutAction } from "@/lib/actions/auth"
 import { Button } from "@/components/ui/button"
 import { createClient } from "@/lib/supabase/server"
+import { InvitationList } from "@/components/dashboard/InvitationList"
 
 export default async function DashboardPage() {
   const supabase = await createClient()
@@ -26,9 +28,13 @@ export default async function DashboardPage() {
           </Button>
         </form>
       </div>
-      <p className="text-sm text-muted-foreground">
-        Daftar undangan Anda akan tampil di sini.
-      </p>
+
+      <div className="flex items-center justify-between">
+        <h2 className="text-lg font-medium">Undangan saya</h2>
+        <Button render={<Link href="/dashboard/new" />}>Buat undangan</Button>
+      </div>
+
+      <InvitationList />
     </main>
   )
 }

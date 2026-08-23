@@ -2,6 +2,12 @@ import { z } from "zod"
 
 export const eventTypes = ["wedding", "birthday", "engagement"] as const
 
+export const eventTypeLabels: Record<(typeof eventTypes)[number], string> = {
+  wedding: "Pernikahan",
+  birthday: "Ulang Tahun",
+  engagement: "Pertunangan",
+}
+
 export const invitationSchema = z.object({
   event_type: z.enum(eventTypes, { message: "Pilih tipe acara" }),
   title: z
