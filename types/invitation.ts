@@ -25,4 +25,5 @@ export type PublicInvitation = Pick<
   | "location_text"
   | "location_link"
   | "description"
+  | "cover_image_url"
 >
