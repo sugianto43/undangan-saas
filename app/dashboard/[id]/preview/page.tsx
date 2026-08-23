@@ -5,7 +5,9 @@ import { getInvitationPageMedia } from "@/lib/supabase/invitation-page-media"
 import { InvitationPageContent } from "@/components/public-invitation/InvitationPageContent"
 import { ThemeWrapper } from "@/components/themes/ThemeWrapper"
 import { resolveThemeId } from "@/components/themes/themes"
-import { PreviewActionBar } from "@/components/dashboard/PreviewActionBar"
+import { PreviewTopBar } from "@/components/dashboard/PreviewTopBar"
+import { PreviewFrame } from "@/components/dashboard/PreviewFrame"
+import { PublishSidebar } from "@/components/dashboard/PublishSidebar"
 
 export default async function InvitationPreviewPage(
   props: PageProps<"/dashboard/[id]/preview">
@@ -33,18 +35,24 @@ export default async function InvitationPreviewPage(
   )
 
   return (
-    <div>
-      <PreviewActionBar invitationId={id} status={invitation.status} />
+    <div className="flex flex-1 flex-col">
+      <PreviewTopBar invitationId={id} status={invitation.status} />
 
-      <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
-        <InvitationPageContent
-          invitation={invitation}
-          guestName="Tamu Undangan"
-          coverUrl={coverUrl}
-          galleryPhotos={galleryPhotos}
-          interactive={false}
-        />
-      </ThemeWrapper>
+      <div className="mx-auto flex w-full max-w-6xl flex-1 flex-col md:flex-row">
+        <PreviewFrame>
+          <ThemeWrapper themeId={resolveThemeId(invitation.theme_id)}>
+            <InvitationPageContent
+              invitation={invitation}
+              guestName="Tamu Undangan"
+              coverUrl={coverUrl}
+              galleryPhotos={galleryPhotos}
+              interactive={false}
+            />
+          </ThemeWrapper>
+        </PreviewFrame>
+
+        <PublishSidebar invitationId={id} status={invitation.status} />
+      </div>
     </div>
   )
 }

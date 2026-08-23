@@ -40,8 +40,8 @@ export default function NewInvitationPage() {
           Rancang Undangan Anda
         </h1>
         <p className="mt-2 max-w-xl text-muted-foreground">
-          Setiap perayaan besar dimulai dari undangan yang penuh perhatian.
-          Isi detail acara Anda di bawah ini.
+          Setiap perayaan besar dimulai dari permintaan yang penuh perhatian.
+          Tentukan detail acara mendatang Anda.
         </p>
       </div>
       <div className="glass-panel relative overflow-hidden rounded-2xl p-6 md:p-8">
@@ -51,6 +51,7 @@ export default function NewInvitationPage() {
         />
         <div className="relative">
           <InvitationForm
+            wizard
             onSubmit={handleSubmit}
             submitLabel="Buat undangan"
             pending={createInvitation.isPending}
