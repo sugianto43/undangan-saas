@@ -78,6 +78,13 @@ export function InvitationCard({
           <Button
             variant="outline"
             size="sm"
+            render={<Link href={`/dashboard/${invitation.id}/responses`} />}
+          >
+            Lihat rekap
+          </Button>
+          <Button
+            variant="outline"
+            size="sm"
             onClick={handleTogglePublish}
             disabled={publishInvitation.isPending}
           >
