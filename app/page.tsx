@@ -1,7 +1,8 @@
 import Link from "next/link"
 import { CirclePlay, FilePenLine, ListChecks, Palette } from "lucide-react"
 import { Button } from "@/components/ui/button"
-import { Wordmark } from "@/components/brand/Wordmark"
+import { MarketingHeader } from "@/components/marketing/MarketingHeader"
+import { MarketingFooter } from "@/components/marketing/MarketingFooter"
 
 const features = [
   {
@@ -48,14 +49,7 @@ const steps = [
 export default function Home() {
   return (
     <main className="flex flex-1 flex-col bg-background">
-      <header className="sticky top-0 z-50 border-b border-border/60 bg-background/80 backdrop-blur-lg">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4 md:px-16">
-          <Wordmark />
-          <Button size="lg" className="rounded-full" nativeButton={false} render={<Link href="/login" />}>
-            Buat Undangan
-          </Button>
-        </div>
-      </header>
+      <MarketingHeader />
 
       <section className="relative flex min-h-[75vh] flex-col items-center justify-center gap-6 overflow-hidden px-5 py-20 text-center">
         <div
@@ -151,14 +145,7 @@ export default function Home() {
         </div>
       </section>
 
-      <footer className="border-t border-border bg-muted/50 px-5 py-10 md:px-16">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <Wordmark />
-          <p className="text-sm text-muted-foreground">
-            © 2026 Invito. The Modern Host.
-          </p>
-        </div>
-      </footer>
+      <MarketingFooter />
     </main>
   )
 }
