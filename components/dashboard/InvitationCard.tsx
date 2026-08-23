@@ -2,6 +2,7 @@
 
 import Link from "next/link"
 import { toast } from "sonner"
+import { Trash2Icon } from "lucide-react"
 import { eventTypeLabels } from "@/lib/validations/invitation"
 import {
   useDeleteInvitation,
@@ -56,7 +57,7 @@ export function InvitationCard({
           <span
             className={
               isPublished
-                ? "rounded-full bg-primary/10 px-2 py-0.5 text-xs font-medium text-primary"
+                ? "rounded-full bg-accent/25 px-2 py-0.5 text-xs font-medium text-accent-foreground"
                 : "rounded-full bg-muted px-2 py-0.5 text-xs font-medium text-muted-foreground"
             }
           >
@@ -71,7 +72,7 @@ export function InvitationCard({
           <div>{invitation.rsvp_count} RSVP</div>
         </dl>
 
-        <div className="flex flex-wrap gap-2 pt-2">
+        <div className="flex flex-wrap items-center gap-2 pt-2">
           <Button
             variant="outline"
             size="sm"
@@ -97,7 +98,7 @@ export function InvitationCard({
             Preview
           </Button>
           <Button
-            variant="outline"
+            variant="default"
             size="sm"
             onClick={handleTogglePublish}
             disabled={publishInvitation.isPending}
@@ -109,8 +110,13 @@ export function InvitationCard({
             onConfirm={handleDelete}
             pending={deleteInvitation.isPending}
             trigger={
-              <Button variant="destructive" size="sm">
-                Hapus
+              <Button
+                variant="ghost"
+                size="icon-sm"
+                className="ml-auto text-muted-foreground hover:text-destructive"
+                aria-label="Hapus undangan"
+              >
+                <Trash2Icon />
               </Button>
             }
           />
