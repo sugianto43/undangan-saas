@@ -32,16 +32,16 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 2 — CRUD Undangan (Dashboard, tanpa tema/foto dulu)
 
-- [ ] `lib/validations/invitation.ts` — Zod schema untuk create/update invitation
-- [ ] `lib/queries/keys.ts` — query key constants
-- [ ] `lib/queries/useInvitations.ts`, `useInvitation.ts`, mutation hooks (create/update/delete/publish)
-- [ ] API Route Handlers: `POST/PATCH/DELETE /api/invitations`, `POST /api/invitations/[id]/publish` (validasi Zod di server juga, RLS enforce ownership)
-- [ ] `/dashboard` — list undangan milik user (card: judul, tipe, status, tanggal, count RSVP) pakai TanStack Query
-- [ ] `/dashboard/new` — form create (RHF + Zod), slug auto-generate + editable + validasi unik
-- [ ] `/dashboard/[id]/edit` — form edit, reuse komponen form dari `new`
-- [ ] Delete undangan (dengan confirm dialog)
-- [ ] Publish/unpublish toggle
-- [ ] Unit test: Zod schema invitation, slug generator util
+- [x] `lib/validations/invitation.ts` — Zod schema untuk create/update invitation
+- [x] `lib/queries/keys.ts` — query key constants
+- [x] `lib/queries/useInvitations.ts`, `useInvitation.ts`, mutation hooks (create/update/delete/publish)
+- [x] API Route Handlers: `POST/PATCH/DELETE /api/invitations`, `POST /api/invitations/[id]/publish` (validasi Zod di server juga, RLS enforce ownership)
+- [x] `/dashboard` — list undangan milik user (card: judul, tipe, status, tanggal, count RSVP) pakai TanStack Query
+- [x] `/dashboard/new` — form create (RHF + Zod), slug auto-generate + editable + validasi unik
+- [x] `/dashboard/[id]/edit` — form edit, reuse komponen form dari `new`
+- [x] Delete undangan (dengan confirm dialog)
+- [x] Publish/unpublish toggle
+- [x] Unit test: Zod schema invitation, slug generator util
 
 ## Phase 3 — Halaman Publik Minimal
 
