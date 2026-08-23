@@ -96,7 +96,11 @@ export function RsvpForm({ invitationId }: { invitationId: string }) {
               <Select value={field.value} onValueChange={field.onChange}>
                 <FormControl>
                   <SelectTrigger className="w-full">
-                    <SelectValue placeholder="Pilih status kehadiran" />
+                    <SelectValue placeholder="Pilih status kehadiran">
+                      {(value: (typeof attendingOptions)[number] | null) =>
+                        value ? attendingLabels[value] : "Pilih status kehadiran"
+                      }
+                    </SelectValue>
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
