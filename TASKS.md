@@ -63,12 +63,12 @@ Cara pakai: jalankan slash command `/phase-N-<nama>` di Claude Code untuk masing
 
 ## Phase 5 — Upload Foto
 
-- [ ] Setup Supabase Storage bucket (cover + gallery), policy akses sesuai ownership
-- [ ] Upload cover image di form editor (validasi ukuran/tipe file client-side)
-- [ ] Upload galeri (maks 10 file) dengan preview & reorder sederhana
-- [ ] Simpan url ke `invitation_photos`
-- [ ] Tampilkan galeri di halaman publik (grid + lightbox sederhana), pakai `next/image`
-- [ ] Lazy-load galeri di bawah fold
+- [x] Setup Supabase Storage bucket (cover + gallery), policy akses sesuai ownership
+- [x] Upload cover image di form editor (validasi ukuran/tipe file client-side)
+- [x] Upload galeri (maks 10 file) dengan preview & reorder sederhana
+- [x] Simpan url ke `invitation_photos`
+- [x] Tampilkan galeri di halaman publik (grid + lightbox sederhana), pakai `next/image`
+- [x] Lazy-load galeri di bawah fold
 
 ## Phase 6 — Multi-tema
 

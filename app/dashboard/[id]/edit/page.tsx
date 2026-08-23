@@ -3,6 +3,8 @@
 import { useParams, useRouter } from "next/navigation"
 import { toast } from "sonner"
 import { InvitationForm } from "@/components/editor/InvitationForm"
+import { CoverImageUpload } from "@/components/editor/CoverImageUpload"
+import { GalleryUpload } from "@/components/editor/GalleryUpload"
 import { useInvitation } from "@/lib/queries/useInvitation"
 import { useUpdateInvitation } from "@/lib/queries/useInvitationMutations"
 import type { InvitationInput } from "@/lib/validations/invitation"
@@ -51,20 +53,30 @@ export default function EditInvitationPage() {
       ) : null}
 
       {invitation ? (
-        <InvitationForm
-          key={invitation.id}
-          defaultValues={{
-            ...invitation,
-            event_date: toDatetimeLocalValue(invitation.event_date),
-            location_text: invitation.location_text ?? "",
-            location_link: invitation.location_link ?? "",
-            description: invitation.description ?? "",
-          }}
-          onSubmit={handleSubmit}
-          submitLabel="Simpan perubahan"
-          pending={updateInvitation.isPending}
-          serverError={updateInvitation.error?.message}
-        />
+        <div className="space-y-8">
+          <div className="space-y-6 rounded-lg border p-4">
+            <CoverImageUpload
+              invitationId={invitation.id}
+              coverPath={invitation.cover_image_url}
+            />
+            <GalleryUpload invitationId={invitation.id} />
+          </div>
+
+          <InvitationForm
+            key={invitation.id}
+            defaultValues={{
+              ...invitation,
+              event_date: toDatetimeLocalValue(invitation.event_date),
+              location_text: invitation.location_text ?? "",
+              location_link: invitation.location_link ?? "",
+              description: invitation.description ?? "",
+            }}
+            onSubmit={handleSubmit}
+            submitLabel="Simpan perubahan"
+            pending={updateInvitation.isPending}
+            serverError={updateInvitation.error?.message}
+          />
+        </div>
       ) : null}
     </main>
   )
